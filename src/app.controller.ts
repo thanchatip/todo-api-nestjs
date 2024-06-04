@@ -1,12 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { TodoItem, TodoService } from './app.service';
 
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+@Controller('todos')
+export class TodoController {
+  constructor(private readonly todoService: TodoService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getList(): TodoItem[] {
+    console.log('todo')
+    return this.todoService.getList();
   }
+
+  @Post()
+  create(@Body() todo: TodoItem) {
+    console.log(todo)
+    return this.todoService.create(todo);
+  }
+
 }
