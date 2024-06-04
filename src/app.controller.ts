@@ -7,14 +7,11 @@ export class TodoController {
 
   @Get()
   getList(): TodoItem[] {
-    console.log('todo')
     return this.todoService.getList();
   }
 
   @Post()
   create(@Body() todo: TodoItem) {
-    console.log(todo)
     return this.todoService.create(todo);
   }
-
 }
